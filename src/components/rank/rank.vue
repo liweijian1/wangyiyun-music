@@ -57,7 +57,7 @@
   @import "./../../common/scss/mixin";
 .rank{
   width: 100%;
-  height: 100%;
+  //height: 100%;
   bottom: 0;
   .toplist{
     height: 100%;

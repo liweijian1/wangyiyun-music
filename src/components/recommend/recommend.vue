@@ -10,20 +10,22 @@
               </div>
             </slider>
           </div>
+          <div class="menu-button">
+            <menu-tab></menu-tab>
+          </div>
           <div class="recommend-list" ref="recommendList">
             <h1 class="title">推荐歌单</h1>
-            <ul>
-              <li class="item" v-for="item in playList" :key="item.id">
-                <div class="icon">
-                  <div></div>
-                  <img v-lazy="item.picUrl"/>
-                </div>
-                <p class="play-count">
-                  {{Math.floor(item.playCount/10000)}}万
-                </p>
-                <p class="text">{{item.name}}</p>
-              </li>
-            </ul>
+              <ul>
+                <li class="item" v-for="item in playList" :key="item.id">
+                  <div class="icon">
+                    <img v-lazy="item.picUrl"/>
+                  </div>
+                  <p class="play-count">
+                    {{Math.floor(item.playCount).toString().length<9 ? Math.floor(item.playCount/10000)+"万":(Math.floor(item.playCount/10000000))/10+"亿"}}
+                  </p>
+                  <p class="text">{{item.name}}</p>
+                </li>
+              </ul>
           </div>
           <div class="recommend-song" ref="recommendSong">
             <h1 class="title">推荐歌曲</h1>
@@ -49,9 +51,10 @@
     import {getBanner,getRecommendList,getRecommendSong} from "./../../api/recommend"
     import Slider from "../../base/slider";
     import {mapMutations} from 'vuex';
+    import MenuTab from "../tab/menu-tab";
     export default {
         name: 'recommend',
-      components: {Slider, Scroll},
+      components: {MenuTab, Slider, Scroll},
       data(){
           return{
             banner:[],
@@ -77,7 +80,6 @@
              })
           },
           selectBanner(item){
-            console.log(item)
             let regHttp = /^http/
             if(regHttp.test(item.url)){
               window.open(item.url)
@@ -88,6 +90,8 @@
           getRecommendList().then((res) => {
             if(res.data.code === 200) {
                this.playList = res.data.result
+               console.log(this.playList)
+               console.log(Math.floor(this.playList[3].playCount).toString().length)
             }else{
               consle.error('getRecommendList 获取失败')
             }
@@ -124,9 +128,8 @@
 @import "./../../common/scss/variable";
 @import "./../../common/scss/mixin";
   .recommend{
-    //position: fixed;
     width: 100%;
-    height: 100%;
+    //height: 100%;
     bottom: 0;
     padding-bottom: 20px;
     z-index: 100;
@@ -138,7 +141,6 @@
         position: absolute;
         top:-30vh;
         z-index: -10;
-        background: $color-theme;
         width: 100%;
         height: 50vh;
         vertical-align: inherit;

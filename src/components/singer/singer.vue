@@ -90,7 +90,7 @@
 
 <style lang="scss" scoped>
 .singer{
-  height: 100%;
+  //height: 100%;
   width: 100%;
   bottom: 0;
 }

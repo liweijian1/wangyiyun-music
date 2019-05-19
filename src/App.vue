@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-    <m-header></m-header>
-    <tab></tab>
-    <keep-alive>
-      <router-view/>
-    </keep-alive>
+    <div class="header">
+      <m-header></m-header>
+    </div>
+    <div class="content">
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+    </div>
+    <div class="foote">
+      <tab></tab>
+    </div>
   </div>
 </template>
 
@@ -20,10 +26,22 @@ export default {
 <style lang="scss">
   @import "./common/scss/index";
 #app {
+  display: flex;
+  flex-flow: column;
   position: fixed;
   top: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
+  .header{
+    height: 44px;
+  }
+  .content{
+    flex: 1;
+    overflow-y: scroll;
+  }
+  .foote{
+    height: 44px;
+  }
 }
 </style>

@@ -6,11 +6,13 @@ import router from './router'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
 import './assets/icon/iconfont.css'
-import pinyin from 'js-pinyin'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
 Vue.use(VueLazyload)
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({

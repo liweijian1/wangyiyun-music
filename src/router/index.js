@@ -5,14 +5,16 @@ import Recommend from './../components/recommend/recommend'
 import Rank from './../components/rank/rank'
 import Singer from './../components/singer/singer'
 import Search from './../components/search/search'
+import Registe from './../components/registe/registe'
+import Login from './../components/login/login'
 
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
+  mode:'hash',
   routes: [
     {
-      path:'/'
+      path:'/',
     },
     {
       path: '/user',
@@ -33,6 +35,14 @@ export default new Router({
     {
       path:'/search',
       component:Search
+    },
+    {
+      path:'/registe',
+      component:Registe
+    },
+    {
+      path:'/login',
+      component:Login
     }
   ]
 })
